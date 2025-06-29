@@ -1,17 +1,22 @@
-//
-//  TestEditApp.swift
-//  TestEdit
-//
-//  Created by WhiteSquall on 6/28/25.
-//
-
 import SwiftUI
 
 @main
 struct TestEditApp: App {
+    @StateObject var appState = AppState()
+    
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        
+        WindowGroup("Main Window") {
+            MainWindowView()
+                .environmentObject(appState)
         }
+        
+        WindowGroup("Setting") {
+            SettingsWindowView()
+                .environmentObject(appState)
+        }
+        .handlesExternalEvents(matching: ["settings"])
+        
     }
+    
 }
