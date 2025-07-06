@@ -6,12 +6,12 @@ struct TestEditApp: App {
     
     var body: some Scene {
         
-        WindowGroup("Main Window") {
+        WindowGroup("TestEdit") {
             MainWindowView()
                 .environmentObject(appState)
         }
         
-        WindowGroup("Setting") {
+        WindowGroup("설정") {
             SettingsWindowView()
                 .environmentObject(appState)
         }

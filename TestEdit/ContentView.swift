@@ -7,7 +7,7 @@ class AppState: ObservableObject {
 
 struct MainWindowView: View {
     @EnvironmentObject var appState: AppState
-    @State private var isSettingsWindowOpen = false
+    @State private var settingsWindowController: SettingsWindowController?
     
     var body: some View {
         HSplitView {
@@ -27,12 +27,12 @@ struct MainWindowView: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("설정 열기") {
-                    isSettingsWindowOpen = true
-                    NSApp.sendAction(Selector(("showSettingWindow:")), to: nil, from: nil)
+                    let controller = SettingsWindowController(appState: appState)
+                    controller.showWindow(nil)
+                    settingsWindowController = controller
                 }
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
